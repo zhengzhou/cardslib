@@ -1,9 +1,11 @@
-package com.zhou.appmanager;
+package com.zhou.appmanager.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.zhou.appmanager.R;
 
 
 public class MainActivity extends Activity {
