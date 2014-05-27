@@ -1,1 +1,1 @@
-include ':library' ,':demo:stock' , ':demo:extras' , ':library-extra'
+include ':library', ':demo:appManager', ':demo:stock', ':demo:extras', ':library-extra'
