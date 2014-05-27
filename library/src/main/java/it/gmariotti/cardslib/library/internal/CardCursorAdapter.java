@@ -71,20 +71,17 @@ public abstract class CardCursorAdapter extends BaseCardCursorAdapter  {
     // -------------------------------------------------------------
 
     public CardCursorAdapter(Context context) {
-        super(context, null, false);
-        mContext= context;
+        super(context, null, 0);
         mExpandedIds = new ArrayList<String>();
     }
 
     protected CardCursorAdapter(Context context, Cursor c, boolean autoRequery) {
         super(context, c, autoRequery);
-        mContext= context;
         mExpandedIds = new ArrayList<String>();
     }
 
     protected CardCursorAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
-        mContext= context;
         mExpandedIds = new ArrayList<String>();
     }
 
@@ -148,6 +145,8 @@ public abstract class CardCursorAdapter extends BaseCardCursorAdapter  {
                 //Setup swipeable animation
                 setupSwipeableAnimation(mCard, mCardView);
 
+                //setupMultiChoice
+                setupMultichoice(view,mCard,mCardView,cursor.getPosition());
             }
         }
     }

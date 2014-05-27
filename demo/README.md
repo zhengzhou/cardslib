@@ -1,10 +1,10 @@
 # Card Library Demo
 
-![Screen](https://github.com/gabrielemariotti/cardslib/raw/master/demo/images/demo_gplay.png)
+![Screen](/demo/images/demo_gplay.png)
 
 There are two sample applications:
 
-* the **stock sample** which uses the standard library and provides a showcase of the functionality of the library [(Screenshots:)](https://github.com/gabrielemariotti/cardslib/tree/master/doc/EXAMPLE.md)
+* the **stock sample** which uses the standard library and provides a showcase of the functionality of the library [(Screenshots:)](/doc/EXAMPLE.md)
 * the **extras sample** which uses the library integrated with other libraries:
 
 1. [Picasso][1]
@@ -16,7 +16,7 @@ There are two sample applications:
 7. [StickyListHeaders][14]
 8. [AndroidStaggeredGrid][16]
 
-[(See this page for more info about integration)](https://github.com/gabrielemariotti/cardslib/tree/master/doc/OTHERLIBRARIES.md)
+[(See this page for more info about integration)](/doc/OTHERLIBRARIES.md)
 
 
 Demos require minSdkVersion of 14.
@@ -44,6 +44,7 @@ Extras demo uses these open source libraries:
 * [AndroidStaggeredGrid][16] by [Etsy][17]
 
 * Thanks to [JakeWharton][18] for some ideas and code taken from his [u2020][19].
+* Thanks to [Taylor Ling][20] for drag and drop icon.
 
 Credits
 -------
@@ -103,4 +104,5 @@ License
  [17]: https://github.com/etsy
  [18]: http://jakewharton.com/
  [19]: https://github.com/JakeWharton/u2020
+ [20]: https://plus.google.com/+TaylorLing
 

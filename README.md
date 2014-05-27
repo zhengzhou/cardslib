@@ -1,18 +1,21 @@
 # Card Library
+Travis master: [![Build Status](https://travis-ci.org/gabrielemariotti/cardslib.svg?branch=master)](https://travis-ci.org/gabrielemariotti/cardslib)
+Travis dev: [![Build Status](https://travis-ci.org/gabrielemariotti/cardslib.svg?branch=dev)](https://travis-ci.org/gabrielemariotti/cardslib)
+
 
 **Card Library** provides an easy way to display a UI Card in your Android app.
 
 You can display **single cards**, **list** of cards and **grid** or **staggered grid** of Cards.
 
-![Screen](https://github.com/gabrielemariotti/cardslib/raw/master/demo/images/screen.png)
+![Screen](/demo/images/screen.png)
 
-![Screen](https://github.com/gabrielemariotti/cardslib/raw/master/demo/images/screen3.png)
+![Screen](/demo/images/screen3.png)
 
 
 ## Examples
 
 
-![Screen](https://github.com/gabrielemariotti/cardslib/raw/master/demo/images/demo_gplay.png)
+![Screen](/demo/images/demo_gplay.png)
 
 * **Sample** application: The demo is a showcase of the functionality of the library.
 
@@ -23,16 +26,16 @@ You can display **single cards**, **list** of cards and **grid** or **staggered 
 	[![Get it on Google Play](http://www.android.com/images/brand/get_it_on_play_logo_small.png)](https://play.google.com/store/apps/details?id=it.gmariotti.cardslib.demo.extras)
 
 
-* Browse the [source code of the sample application](https://github.com/gabrielemariotti/cardslib/tree/master/demo) for a complete example of use.
+* Browse the [source code of the sample application](/demo) for a complete example of use.
 
-* [Card Gallery:](https://github.com/gabrielemariotti/cardslib/tree/master/doc/EXAMPLE.md) How to realize simple and nice cards.
+* [Card Gallery:](/doc/EXAMPLE.md) How to realize simple and nice cards.
 
-  [See this page for more info about demo and samples](https://github.com/gabrielemariotti/cardslib/tree/master/demo/README.md)
+  [See this page for more info about demo and samples](/demo/README.md)
   
 ## Support
 Join the [**Google+ Community**](https://plus.google.com/u/0/communities/111800040690738372803): 
 
-[![Join the Google+ Community](https://github.com/gabrielemariotti/cardslib/raw/master/demo/images/g+64.png)](https://plus.google.com/u/0/communities/111800040690738372803)
+[![Join the Google+ Community](/demo/images/g+64.png)](https://plus.google.com/u/0/communities/111800040690738372803)
 	
 a place to discuss the library, share screenshots, ask for tips, talk with the author....﻿
 
@@ -41,7 +44,7 @@ a place to discuss the library, share screenshots, ask for tips, talk with the a
 
 ## Doc
 
-See the **[Card Library Guide](https://github.com/gabrielemariotti/cardslib/tree/master/doc/GUIDE.md)** to know all card library features and all customizations.
+See the **[Card Library Guide](/doc/GUIDE.md)** to know all card library features and all customizations.
 The Guide provides a extensive doc, with all tips and full examples. Don't miss it.
 
 
@@ -50,13 +53,13 @@ The Guide provides a extensive doc, with all tips and full examples. Don't miss 
 Card Library is pushed to Maven Central as an AAR, so you just need to add the following dependency to your `build.gradle`.
 
     dependencies {
-        compile 'com.github.gabrielemariotti.cards:library:1.5.0'
+        compile 'com.github.gabrielemariotti.cards:library:1.6.0'
     }
 
 
 ## ChangeLog
 
-* [Changelog:](https://github.com/gabrielemariotti/cardslib/tree/master/CHANGELOG.md) A complete changelog
+* [Changelog:](CHANGELOG.md) A complete changelog
 
 
 Acknowledgements
@@ -64,7 +67,8 @@ Acknowledgements
 
 * Thanks to [Roman Nurik][1] for [Android-SwipeToDismiss][2] classes and [UndoBarController][3] classes.
 * Thanks to [Niek Haarman][4] for some ideas and code taken from his [ListViewAnimations][5].
-* Thanks to [Chris Banes][6] for [ForegroundLinearLayout][7] class.
+* Thanks to [Chris Banes][6] for [ForegroundLinearLayout][7] class (See this [post][8] for more info).
+* Thanks to [Taylor Ling][9] for drag and drop icon.
 
 
 Credits
@@ -114,4 +118,6 @@ Google and the Google Maps logo are registered trademarks of Google Inc., used w
  [4]: https://plus.google.com/+NiekHaarman
  [5]: https://github.com/nhaarman/ListViewAnimations
  [6]: https://plus.google.com/+ChrisBanes
- [7]: https://gist.github.com/chrisbanes/9091754 & https://plus.google.com/+AndroidDevelopers/posts/aHPVDtr6mcp
+ [7]: https://gist.github.com/chrisbanes/9091754
+ [8]: https://plus.google.com/+AndroidDevelopers/posts/aHPVDtr6mcp
+ [9]: https://plus.google.com/+TaylorLing

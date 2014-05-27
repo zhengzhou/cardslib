@@ -1,4 +1,4 @@
-
+apply plugin: 'android-sdk-manager'
 apply plugin: 'android'
 
 repositories {
@@ -28,6 +28,11 @@ android {
                 signingConfig signingConfigs.release
             }
         }
+
+        debug {
+            packageNameSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
     }
 
     // This is important, it will run lint checks but won't abort build
@@ -40,7 +45,7 @@ dependencies {
     // Cards Library
     compile project(':library')
     // Support Libraries
-    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.android.support:support-v4:19.1.0'
 
     androidTestCompile 'com.jakewharton.espresso:espresso:1.1-r2'
 }
