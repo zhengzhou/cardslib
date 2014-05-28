@@ -6,6 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zhou.appmanager.R;
+import com.zhou.appmanager.cards.DetailCard;
+
+import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.view.CardView;
 
 
 public class MainActivity extends Activity {
@@ -14,8 +18,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
     }
 
+
+    private void init() {
+        CardView cardView = (CardView) findViewById(R.id.card_app_detail);
+        Card card = new DetailCard(this);
+        cardView.setCard(card);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,6 +3,8 @@ package com.zhou.appmanager.cards;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.zhou.appmanager.R;
+
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 
@@ -12,7 +14,7 @@ import it.gmariotti.cardslib.library.internal.CardHeader;
 public class DetailCard extends Card {
 
     public DetailCard(Context context) {
-        this(context, 0);
+        this(context, R.layout.item_app_detail);
     }
 
     public DetailCard(Context context, int innerLayout) {
@@ -25,7 +27,8 @@ public class DetailCard extends Card {
         header.setButtonExpandVisible(true);
         header.setTitle("Stocks today"); //should use R.string.
         addCardHeader(header);
-
+        setSwipeable(true);
+        setClickable(true);
         setOnSwipeListener(new OnSwipeListener() {
             @Override
             public void onSwipe(Card card) {
