@@ -2,6 +2,7 @@ package com.zhou.appmanager.ui.fragment;
 
 import android.app.Fragment;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +84,10 @@ public class UserAppFragment extends BaseFragment {
         for (AppInfo appInfo : mAppData) {
             DetailCard card = new DetailCard(getActivity());
             card.setIconUrl(appInfo.getPackageName());
+            Drawable drawable = appInfo.getIcon();
+            if (drawable != null) {
+                card.setIcon(drawable);
+            }
             card.setLoader(loader);
             card.setAppName(appInfo.getName());
             card.setVersionName(appInfo.getVersionName());

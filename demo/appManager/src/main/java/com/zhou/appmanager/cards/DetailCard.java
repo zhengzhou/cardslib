@@ -1,6 +1,7 @@
 package com.zhou.appmanager.cards;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import com.zhou.appmanager.R;
 import com.zhou.appmanager.helper.AsyncImageLoader;
 import com.zhou.appmanager.helper.ViewFinder;
 
+import java.lang.ref.WeakReference;
+
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.base.BaseCard;
@@ -20,12 +23,12 @@ import it.gmariotti.cardslib.library.internal.base.BaseCard;
  */
 public class DetailCard extends Card {
 
-    private String appName;
     private String versionName;
     private String size;
     private ViewFinder viewFinder;
     private AsyncImageLoader loader;
     private String iconUrl;
+    private WeakReference<Drawable> icon;
 
     public DetailCard(Context context) {
         this(context, R.layout.item_app_detail);
@@ -37,7 +40,7 @@ public class DetailCard extends Card {
     }
 
     public void setAppName(String appName) {
-        this.appName = appName;
+        getCardHeader().setTitle(appName);
     }
 
     public void setVersionName(String versionName) {
@@ -56,20 +59,27 @@ public class DetailCard extends Card {
         this.loader = loader;
     }
 
+    public void setIcon(Drawable icon) {
+        this.icon = new WeakReference<Drawable>(icon);
+    }
+
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
         super.setupInnerViewElements(parent, view);
         viewFinder = new ViewFinder(view);
         viewFinder.setText(R.id.version_name, versionName);
-        getCardHeader().setTitle(appName);
         ImageView image = viewFinder.imageView(R.id.app_icon);
-        loader.loadDrawable(iconUrl, image, AsyncImageLoader.DrawableLoaderFactory.LoaderType.AppIcon);
+        image.setTag(iconUrl);
+        if (icon != null && icon.get() != null) {
+            image.setImageDrawable(icon.get());
+        } else {
+            loader.loadDrawable(iconUrl, image, AsyncImageLoader.DrawableLoaderFactory.LoaderType.AppIcon);
+        }
     }
 
     private void init() {
         CardHeader header = new CardHeader(getContext());
         header.setButtonExpandVisible(true);
-
         header.setPopupMenu(R.menu.popu_installed_app, new CardHeader.OnClickCardHeaderPopupMenuListener() {
             @Override
             public void onMenuItemClick(BaseCard card, MenuItem item) {
