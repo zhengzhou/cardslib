@@ -1,24 +1,58 @@
 package com.zhou.appmanager.controller;
 
+import android.app.IntentService;
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.IBinder;
 
+import com.zhou.appmanager.helper.AsyncImageLoader;
+import com.zhou.appmanager.model.AppInfo;
 import com.zhou.appmanager.service.IService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xzz on 2014/5/29 0029.
  */
 public class AppChecker implements IService {
     private Context mContext;
+    private List<AppInfo> appInfos;
 
     public AppChecker(Context mContext) {
-        this.mContext = mContext;
+        this.mContext = mContext.getApplicationContext();
     }
 
     public void readPhoneApp() {
-        if (mContext != null) {
-            PackageManager pm = mContext.getPackageManager();
-
+        PackageManager pm = mContext.getPackageManager();
+        List<PackageInfo> pkgInfos = pm.getInstalledPackages(0);
+        appInfos = new ArrayList<AppInfo>(pkgInfos.size());
+        for (PackageInfo pkgInfo : pkgInfos) {
+            AppInfo appInfo = new AppInfo();
+            appInfo.setName(pkgInfo.applicationInfo.loadLabel(pm).toString());
+            appInfo.setPackageName(pkgInfo.packageName);
+            appInfo.setVersionName(pkgInfo.versionName);
+            Drawable drawable = pkgInfo.applicationInfo.loadLogo(pm);
+            AsyncImageLoader.putDrawable(pkgInfo.packageName, drawable);
+            appInfo.setIcon(drawable);
+            appInfos.add(appInfo);
         }
     }
+
+    @Override
+    public void Prepare() {
+        if (appInfos == null && mContext != null) {
+            readPhoneApp();
+        }
+    }
+
+    public List<AppInfo> getAppInfos() {
+        return appInfos;
+    }
+
 }
