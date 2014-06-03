@@ -86,7 +86,7 @@ public class UserAppFragment extends BaseFragment {
             card.setIconUrl(appInfo.getPackageName());
             Drawable drawable = appInfo.getIcon();
             if (drawable != null) {
-                card.setIcon(drawable);
+//                card.setIcon(drawable);
             }
             card.setLoader(loader);
             card.setAppName(appInfo.getName());

@@ -33,14 +33,16 @@ public class AppChecker implements IService {
         List<PackageInfo> pkgInfos = pm.getInstalledPackages(0);
         appInfos = new ArrayList<AppInfo>(pkgInfos.size());
         for (PackageInfo pkgInfo : pkgInfos) {
-            AppInfo appInfo = new AppInfo();
-            appInfo.setName(pkgInfo.applicationInfo.loadLabel(pm).toString());
-            appInfo.setPackageName(pkgInfo.packageName);
-            appInfo.setVersionName(pkgInfo.versionName);
-            Drawable drawable = pkgInfo.applicationInfo.loadLogo(pm);
-            AsyncImageLoader.putDrawable(pkgInfo.packageName, drawable);
-            appInfo.setIcon(drawable);
-            appInfos.add(appInfo);
+            if ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setName(pkgInfo.applicationInfo.loadLabel(pm).toString());
+                appInfo.setPackageName(pkgInfo.packageName);
+                appInfo.setVersionName(pkgInfo.versionName);
+                Drawable drawable = pkgInfo.applicationInfo.loadLogo(pm);
+                AsyncImageLoader.putDrawable(pkgInfo.packageName, drawable);
+                appInfo.setIcon(drawable);
+                appInfos.add(appInfo);
+            }
         }
     }
 
