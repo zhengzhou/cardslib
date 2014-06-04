@@ -32,7 +32,7 @@ public class AppChecker implements IService {
 
     public AppChecker(Context mContext) {
         this.mContext = mContext.getApplicationContext();
-        BACKUP_PATH = Environment.getExternalStorageDirectory().getPath() + "/backups";
+        BACKUP_PATH = Environment.getExternalStorageDirectory().getPath() + "/backups/";
     }
 
     public void readPhoneApp() {
@@ -62,6 +62,7 @@ public class AppChecker implements IService {
     }
 
     public void backUpApp(AppInfo... apps) {
+        new File(BACKUP_PATH).mkdirs();
         for (AppInfo app : apps) {
             File sourceFile = new File(app.getSourcePath());
             File destFile = getDestFile(app, BACKUP_PATH);

@@ -92,6 +92,7 @@ public class UserAppFragment extends BaseFragment implements CardHeader.OnClickC
             card.setIconUrl(appInfo.getPackageName());
             card.setAppName(appInfo.getName());
             card.setVersionName(appInfo.getVersionName());
+            card.setListener(this);
 //            card.set
             card.setOnSwipeListener(new Card.OnSwipeListener() {
                 @Override
@@ -99,6 +100,7 @@ public class UserAppFragment extends BaseFragment implements CardHeader.OnClickC
                     cards.remove(card);
                 }
             });
+            card.init();
             cards.add(card);
         }
         setUpArrayList();
@@ -133,7 +135,9 @@ public class UserAppFragment extends BaseFragment implements CardHeader.OnClickC
         switch (item.getItemId()) {
             case R.id.menu_backup:
                 AppInfo app = detailCard.getAppInfo();
+                getActivity().setProgressBarIndeterminateVisibility(true);
                 checker.backUpApp(app);
+                getActivity().setProgressBarIndeterminateVisibility(false);
                 break;
         }
     }

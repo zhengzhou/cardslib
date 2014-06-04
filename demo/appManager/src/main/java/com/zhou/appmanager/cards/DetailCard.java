@@ -39,7 +39,9 @@ public class DetailCard extends Card {
 
     public DetailCard(Context context, int innerLayout) {
         super(context, innerLayout);
-        init();
+        CardHeader header = new CardHeader(getContext());
+        header.setButtonExpandVisible(true);
+        addCardHeader(header);
     }
 
     public void setAppName(String appName) {
@@ -96,15 +98,11 @@ public class DetailCard extends Card {
         } else {
             loader.loadDrawable(iconUrl, image, AsyncImageLoader.DrawableLoaderFactory.LoaderType.AppIcon);
         }
-        getCardHeader().setPopupMenu(R.menu.popu_installed_app, listener);
     }
 
-    private void init() {
-        CardHeader header = new CardHeader(getContext());
-        header.setButtonExpandVisible(true);
+    public void init() {
 
-        addCardHeader(header);
-
+        getCardHeader().setPopupMenu(R.menu.popu_installed_app, listener);
         setOnClickListener(new OnCardClickListener() {
             @Override
             public void onClick(Card card, View view) {
