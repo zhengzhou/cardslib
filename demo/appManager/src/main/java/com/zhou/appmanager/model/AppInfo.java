@@ -21,6 +21,8 @@ public class AppInfo {
 
     private int versionCode;
 
+    private String sourcePath;
+
     private WeakReference<Drawable> icon;
 
     public Statu getStatus() {
@@ -77,6 +79,14 @@ public class AppInfo {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+
+    public String getSourcePath() {
+        return sourcePath;
+    }
+
+    public void setSourcePath(String sourcePath) {
+        this.sourcePath = sourcePath;
     }
 
     public enum Statu{

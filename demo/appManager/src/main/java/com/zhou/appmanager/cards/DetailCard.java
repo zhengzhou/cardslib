@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.zhou.appmanager.R;
 import com.zhou.appmanager.helper.AsyncImageLoader;
 import com.zhou.appmanager.helper.ViewFinder;
+import com.zhou.appmanager.model.AppInfo;
 
 import java.lang.ref.WeakReference;
 
@@ -23,12 +24,14 @@ import it.gmariotti.cardslib.library.internal.base.BaseCard;
  */
 public class DetailCard extends Card {
 
+    private AppInfo appInfo;
     private String versionName;
     private String size;
     private ViewFinder viewFinder;
     private AsyncImageLoader loader;
     private String iconUrl;
     private WeakReference<Drawable> icon;
+    private CardHeader.OnClickCardHeaderPopupMenuListener listener;
 
     public DetailCard(Context context) {
         this(context, R.layout.item_app_detail);
@@ -63,10 +66,28 @@ public class DetailCard extends Card {
         this.icon = new WeakReference<Drawable>(icon);
     }
 
+    public CardHeader.OnClickCardHeaderPopupMenuListener getListener() {
+        return listener;
+    }
+
+    public void setListener(CardHeader.OnClickCardHeaderPopupMenuListener listener) {
+        this.listener = listener;
+    }
+
+    public AppInfo getAppInfo() {
+        return appInfo;
+    }
+
+    public void setAppInfo(AppInfo appInfo) {
+        this.appInfo = appInfo;
+    }
+
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
         super.setupInnerViewElements(parent, view);
         viewFinder = new ViewFinder(view);
+        versionName = appInfo.getVersionName();
+
         viewFinder.setText(R.id.version_name, versionName);
         ImageView image = viewFinder.imageView(R.id.app_icon);
         image.setTag(iconUrl);
@@ -75,17 +96,12 @@ public class DetailCard extends Card {
         } else {
             loader.loadDrawable(iconUrl, image, AsyncImageLoader.DrawableLoaderFactory.LoaderType.AppIcon);
         }
+        getCardHeader().setPopupMenu(R.menu.popu_installed_app, listener);
     }
 
     private void init() {
         CardHeader header = new CardHeader(getContext());
         header.setButtonExpandVisible(true);
-        header.setPopupMenu(R.menu.popu_installed_app, new CardHeader.OnClickCardHeaderPopupMenuListener() {
-            @Override
-            public void onMenuItemClick(BaseCard card, MenuItem item) {
-                Toast.makeText(getContext(), "Click on " + item.getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         addCardHeader(header);
 

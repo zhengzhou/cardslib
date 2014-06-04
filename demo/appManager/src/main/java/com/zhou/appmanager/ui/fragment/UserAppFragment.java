@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -24,6 +25,8 @@ import java.util.List;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.internal.CardGridArrayAdapter;
+import it.gmariotti.cardslib.library.internal.CardHeader;
+import it.gmariotti.cardslib.library.internal.base.BaseCard;
 import it.gmariotti.cardslib.library.internal.base.BaseCardArrayAdapter;
 import it.gmariotti.cardslib.library.view.CardGridView;
 import it.gmariotti.cardslib.library.view.CardListView;
@@ -31,7 +34,7 @@ import it.gmariotti.cardslib.library.view.CardListView;
 /**
  * Created by zhou on 14-5-30.
  */
-public class UserAppFragment extends BaseFragment {
+public class UserAppFragment extends BaseFragment implements CardHeader.OnClickCardHeaderPopupMenuListener {
 
     private AbsListView mListView;
     private BaseCardArrayAdapter mAdapter;
@@ -41,6 +44,7 @@ public class UserAppFragment extends BaseFragment {
     List<Card> cards;
 
     int screenOrientation = -1;
+    private AppChecker checker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,17 +82,14 @@ public class UserAppFragment extends BaseFragment {
     }
 
     private void initCard() {
-        AppChecker checker = (AppChecker) getService(ServiceManger.AppCheckerService);
+        checker = (AppChecker) getService(ServiceManger.AppCheckerService);
         mAppData = checker.getAppInfos();
         cards = new ArrayList<Card>(mAppData.size());
         for (AppInfo appInfo : mAppData) {
             DetailCard card = new DetailCard(getActivity());
-            card.setIconUrl(appInfo.getPackageName());
-            Drawable drawable = appInfo.getIcon();
-            if (drawable != null) {
-//                card.setIcon(drawable);
-            }
+            card.setAppInfo(appInfo);
             card.setLoader(loader);
+            card.setIconUrl(appInfo.getPackageName());
             card.setAppName(appInfo.getName());
             card.setVersionName(appInfo.getVersionName());
 //            card.set
@@ -123,6 +124,17 @@ public class UserAppFragment extends BaseFragment {
                 ((CardListView) mListView).setExternalAdapter(animCardArrayAdapter, (CardArrayAdapter) mAdapter);
             else if (CardGridView.class.isInstance(mListView) && CardGridArrayAdapter.class.isInstance(mAdapter))
                 ((CardGridView) mListView).setExternalAdapter(animCardArrayAdapter, (CardGridArrayAdapter) mAdapter);
+        }
+    }
+
+    @Override
+    public void onMenuItemClick(BaseCard card, MenuItem item) {
+        DetailCard detailCard = (DetailCard) card;
+        switch (item.getItemId()) {
+            case R.id.menu_backup:
+                AppInfo app = detailCard.getAppInfo();
+                checker.backUpApp(app);
+                break;
         }
     }
 }
